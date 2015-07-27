@@ -11,6 +11,10 @@ if (typeof(suite) == 'undefined') {
 }
 
 suite('Stream loggin vs File loggin', function () {
+  bench('Streaming', function (done) {
+    stream.logger.info(data, done);
+  });
+
   bench('Plain File', function (done) {
     file.logger.info(data, done);
   });
@@ -19,7 +23,4 @@ suite('Stream loggin vs File loggin', function () {
     rotate.logger.info(data, done);
   });
 
-  bench('Streaming', function (done) {
-    stream.logger.info(data, done);
-  });
 });

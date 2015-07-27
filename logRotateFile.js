@@ -7,8 +7,9 @@ function formatter(options) {
 var winston = require('winston'),
   logger = new (winston.Logger)({
     transports : [
-      new (winston.transports.File)({
-        filename : 'testFile.log',
+      new (winston.transports.DailyRotateFile)({
+        filename : 'testFileRotate.log',
+        datePattern : '.mm',
         formatter : formatter,
         json : false
       })

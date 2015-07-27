@@ -1,7 +1,9 @@
 'use strict';
 
 var stream = require('./stream'),
-    file = require('./plainFile');
+    file = require('./plainFile'),
+    rotate = require('./logRotateFile'),
+    data = 'some small info';
 
 if (typeof(suite) == 'undefined') {
   console.error('Run with matcha');
@@ -9,11 +11,15 @@ if (typeof(suite) == 'undefined') {
 }
 
 suite('Stream loggin vs File loggin', function () {
-  bench('Streaming', function (done) {
-    stream.logger.info('some small info', done);
+  bench('Log Rotate', function (done) {
+    rotate.logger.info(data, done);
   });
 
   bench('Plain File', function (done) {
-    file.logger.info('some small info', done);
+    file.logger.info(data, done);
+  });
+
+  bench('Streaming', function (done) {
+    stream.logger.info(data, done);
   });
 });
